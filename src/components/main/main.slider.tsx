@@ -9,9 +9,13 @@ import Slider from "react-slick";
 import { Settings } from "react-slick"
 import Divider from '@mui/material/Divider';
 
+interface IProps {
+    data: ITrackTop[]
+}
 
+const MainSlider = (props: IProps) => {
 
-const MainSlider = () => {
+    
     const NextArrow = (props: any) => {
         return (
             <Button variant="outlined"
