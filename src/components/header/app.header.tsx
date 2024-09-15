@@ -21,6 +21,7 @@ import Avatar from '@mui/material/Avatar';
 
 import Container from '@mui/material/Container';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -86,6 +87,11 @@ export default function AppHeader() {
     const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
         setMobileMoreAnchorEl(event.currentTarget);
     };
+    const router = useRouter();
+
+    const handleRedirectHome = () => {
+        router.push('/');
+    }
 
     const menuId = 'primary-search-account-menu';
     const renderMenu = (
@@ -99,7 +105,12 @@ export default function AppHeader() {
             transformOrigin={{ horizontal: 'right', vertical: 'top' }}
             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
         >
-            <MenuItem>
+            <MenuItem sx={{
+                "> a": {
+                    color: "unset",
+                    textDecoration: "unset",
+                }
+            }}>
                 <Link href={"/profile"}>Profile</Link>
             </MenuItem>
             <MenuItem onClick={handleMenuClose}>LogOut</MenuItem>
@@ -167,15 +178,18 @@ export default function AppHeader() {
             >
                 <Container>
                     <Toolbar>
-                        <IconButton
-                            size="large"
-                            edge="start"
-                            color="inherit"
-                            aria-label="open drawer"
-                            sx={{ mr: 2 }}
+                        <Typography
+                            variant='h6'
+                            noWrap
+                            component="div"
+                            sx={{
+                                display: { xs: "none", sm: "block" },
+                                cursor: "pointer"
+                            }}
+                            onClick={() => handleRedirectHome()}
                         >
                             Quốc Bảo
-                        </IconButton>
+                        </Typography>
 
                         <Search>
                             <SearchIconWrapper>
