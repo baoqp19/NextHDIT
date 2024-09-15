@@ -8,6 +8,8 @@ import 'react-h5-audio-player/lib/styles.css';
 const AppFooter = () => {
     const hasMounted = useHasMounted();
 
+
+    // next nó chạy 2 lần: lần đầu server render lần sau client, chạy lần dầu thì không cho render ở server, chạy lại lần nữa thì client render và render div
     if (!hasMounted) return (<></>)//fragment
 
     return (
@@ -20,7 +22,7 @@ const AppFooter = () => {
             >
                 <Container sx={{ display: "flex", gap: 10 }}>
                     <AudioPlayer
-                        src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3"
+                        src={`${process.env.NEXT_PUBLIC_URL_MUSIC}`}
                         volume={0.5}
                         style={{
                             boxShadow: "unset",
